@@ -24,15 +24,15 @@ function reverseString(input) {
     
     //Split input string into an array of its individual letters as strings.
     let inputArr = input.split(''); // = ['s', 't', 'r', 'i', 'n', 'g']
-    let reverseArr = []; // Empty container for reversed elements.
+    // let reverseArr = []; // Empty container for reversed elements.
     
-    for (let i = inputArr.length - 1; i >= 0; i--) {
-      reverseArr.push(inputArr[i]);
-    };
+    // for (let i = inputArr.length - 1; i >= 0; i--) {
+    //   reverseArr.push(inputArr[i]);
+    // };
     
-    return reverseArr.join('');
+    // return reverseArr.join('');
     
-    
+    return inputArr.reverse().join('');
     
     // YOUR CODE GOES ABOVE HERE //
 }
