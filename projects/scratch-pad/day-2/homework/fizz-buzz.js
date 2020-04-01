@@ -12,13 +12,31 @@
 */
 function fizzBuzz() {
     // YOUR CODE GOES BELOW HERE //
+    
+    var num = []; //Contains numbers 1-100
+    
+    for (let i = 1; i <= 100; i++) {
+        num.push(i);
+    };
+    
+    for (let i = 0; i < num.length; i++) {
+    
+       if (num[i] >= 1 && num[i] <= 100 && num[i] % 3 !== 0 && num[i] % 5 !== 0) {
+           console.log(num[i]);
+       } else if (num[i] % 3 === 0 && num[i] % 5 === 0) {
+           console.log('FizzBuzz')
+       } else if (num[i] % 3 === 0) {
+           console.log('Fizz');
+       } else if (num[i] % 5 === 0) {
+           console.log('Buzz');
+       } 
 
-
+    }
 
     // YOUR CODE GOES ABOVE HERE //
 }
 
-
+console.log(fizzBuzz())
 
 
 
