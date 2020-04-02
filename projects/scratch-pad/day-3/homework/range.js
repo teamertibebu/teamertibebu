@@ -21,11 +21,27 @@
  *  b. you'll need a loop, which one is best?
  *  c. you'll wanna make use of the push() method of Array.
  */
+ 
+ //Input: Numbers (2)
+ //Output: Array
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
     
+    //Empty array to push values and return.
+    let arr = [];
     
+    //Cond. statement to test for which number (start/end) is greater.
+    if (start < end) {
+        for (let i = start; i <= end; i++) {
+            arr.push(i);
+        }
+    } else if (start > end) {
+        for (let i = start; i >= end; i--) {
+            arr.push(i);
+        }
+    }
     
+    return arr;
     
     // YOUR CODE GOES ABOVE HERE //
 }

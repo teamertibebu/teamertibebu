@@ -12,10 +12,18 @@
  * TIP: In JavaScript, how can we decipher if a value is an Array? Can typeof
  * work?
  */
+ 
+ //Input: value of some sort
+ //Output: boolean
+ 
 function isArray(value) {
     // YOUR CODE BELOW HERE //
     
-    
+    if(Array.isArray(value) === true) {
+        return true;
+    } else {
+        return false;
+    }
     
     
     // YOUR CODE ABOVE HERE //
@@ -29,10 +37,24 @@ function isArray(value) {
  * null, not an Array, not a Date - all of these will return 'object' if used 
  * with typeof.
  */
+ 
+ //Input: value of some type
+ //Output: boolean
+ 
 function isObject(value) {
     // YOUR CODE BELOW HERE //
-    
-    
+  
+  if(Array.isArray(value) === true) {
+      return false;
+  } else if (value === null || value instanceof Date) {
+      return false;
+  } else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean' || typeof value === 'function') {
+      return false;
+  } else if (typeof value === 'undefined') {
+      return false; 
+ }  else {
+      return true;
+  }
     
     
     // YOUR CODE ABOVE HERE //
@@ -46,8 +68,14 @@ function isObject(value) {
  */
 function isCollection(value) {
     // YOUR CODE BELOW HERE //
-    
-    
+  
+  if (value === null || value instanceof Date) {
+      return false;
+  } else if (typeof value === 'undefined' || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean' || typeof value === 'function') {
+      return false;
+  } else {
+      return true;
+  }
     
     
     // YOUR CODE ABOVE HERE //
@@ -59,7 +87,7 @@ function isCollection(value) {
  * Types are one of: 
  *    - "string"
  *    - "array"
- *    - "object"
+ *    - "object" ----
  *    - "undefined"
  *    - "number"
  *    - "boolean"
@@ -75,7 +103,25 @@ function isCollection(value) {
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
     
-    
+    if (typeof value === 'string') {
+        return 'string'
+    } else if (typeof value === 'number') {
+        return 'number'
+    } else if (typeof value === 'boolean') {
+        return 'boolean'
+    } else if (Array.isArray(value) === true) {
+        return 'array'
+    } else if (typeof value === 'undefined') {
+        return 'undefined'
+    } else if (value === null) {
+        return 'null'
+    } else if (typeof value === 'function') {
+        return 'function'
+    } else if (value instanceof Date) {
+        return 'date'
+    } else {
+        return 'object'
+    }
     
     
     // YOUR CODE ABOVE HERE //

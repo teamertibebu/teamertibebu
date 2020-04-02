@@ -14,11 +14,21 @@
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
-    
-    
-    
+  let fn = function(val) {
+         if(val > base){
+             return true;
+         } else if (val < base){
+             return false;
+         } else {
+             return false;
+         }
+     }
+     
+     return fn;
     // YOUR CODE ABOVE HERE //
-}
+    
+} //Curly brace to end createGreaterThanFilter()
+
 
 /** 
  * Given an input base to test against, which could be a String or Number, 
@@ -28,8 +38,15 @@ function createGreaterThanFilter(base) {
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
+    let fn = function (val) {
+        if (val < base) {
+            return true
+        } else {
+            return false
+        }
+    }
     
-    
+    return fn;
     
     // YOUR CODE ABOVE HERE //
 }
@@ -39,24 +56,47 @@ function createLessThanFilter(base) {
  * Function that tests whether a given String starts with the startsWith 
  * character.
  */
+ 
+ //Input: single character string
+ //Output: Function w/ returned boolean.
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
     
-    
+    //function should take in string and compare
+    return function(string) {
+        
+        if (startsWith.toLowerCase() === string.charAt(0).toLowerCase()) {
+            return true;
+        } else {
+            return false;
+        }
+    };
     
     
     // YOUR CODE ABOVE HERE //
 }
+
 
 /** 
  * Given a endsWith character, which will be a single character, return a 
  * Function that tests whether a given String ends with the endsWith 
  * character.
  */
+ 
+ //Input: single character string
+ //Output: Function w/ returned boolean.
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
     
+    //Function should compare endsWith character with first letter in a given string.
     
+    return function(string) {
+        if (endsWith.toLowerCase() === string.charAt(string.length - 1).toLowerCase()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     
     // YOUR CODE ABOVE HERE //
@@ -69,10 +109,25 @@ function createEndsWithFilter(endsWith) {
  * TIP: You need to loop over the Strings, right? We need to pass each String to 
  * the modify Function, but we need to collect the results into some collection.
  */
+ 
+ //Input: array of strings & function
+ //Output: Array of strings modified
+ 
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
     
+    let modifiedStrings = []; //Modified array container.
     
+    /*Iterate through the strings array and pass each into the 
+    modify function then push modified strings into the empty array. */
+    
+    for (let i = 0; i < strings.length; i++) {
+        // let newStr = modify(strings[i]);
+        modifiedStrings.push(modify(strings[i]));
+    }
+    
+    //Return array with the modified strings.
+    return modifiedStrings;
     
     
     // YOUR CODE ABOVE HERE //
@@ -90,6 +145,19 @@ function modifyStrings(strings, modify) {
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
     
+    let bool;
+    for (let i = 0; i < strings.length; i++) {
+        
+        if(test(strings[i]) === true) {
+            bool = true;
+        } else {
+            bool = false;
+            return bool;
+        }
+        
+    }
+    
+    return bool;
     
     
     
