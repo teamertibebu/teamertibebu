@@ -30,7 +30,9 @@ function range(start, end) {
     //Empty array to push values and return.
     let arr = [];
     
-    //Cond. statement to test for which number (start/end) is greater.
+    /*Cond. statement tests for which number (start/end) is greater, sets the 
+    start and end values in array, and iterates either forward/backword 
+    accordingly.*/
     if (start < end) {
         for (let i = start; i <= end; i++) {
             arr.push(i);

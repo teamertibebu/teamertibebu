@@ -13,12 +13,15 @@
 function fizzBuzz() {
     // YOUR CODE GOES BELOW HERE //
     
-    var num = []; //Contains numbers 1-100
+    var num = []; //Container for numbers 1-100 which will be pushed in below.
     
+    //Iterate 1-100 and push each value into the above num container.
     for (let i = 1; i <= 100; i++) {
         num.push(i);
     };
     
+    /*Iterate through num array and print message according to conditions
+    set above.*/
     for (let i = 0; i < num.length; i++) {
     
        if (num[i] >= 1 && num[i] <= 100 && num[i] % 3 !== 0 && num[i] % 5 !== 0) {

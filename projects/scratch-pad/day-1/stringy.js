@@ -57,8 +57,12 @@ function toUpperCase(string) {
  */
 function toDashCase(string) {
     // YOUR CODE BELOW HERE //
-
-      let newStr = string.replace(/ /g, '-');
+    
+        /*.replace() replaces a character in string with another. /\s sets all
+        white space in the string as the value to be replaced, /g tells the program
+        to replace all instances of white space, and '-' is the value to put in place
+        of the white space.*/
+      let newStr = string.replace(/\s/g, '-');
       
       return newStr.toLowerCase();
         
@@ -84,7 +88,9 @@ function toDashCase(string) {
  */
 function beginsWith(string, char) {
     // YOUR CODE BELOW HERE //
-
+    
+    /*Compare first letter of string to char, both in lowercase/uppercase form,
+    and return true/false, accordingly.*/
     if (string[0] === char.toLowerCase() || string[0] === char.toUpperCase()) {
         return true
     } else {
@@ -110,6 +116,8 @@ function beginsWith(string, char) {
 function endsWith(string, char) {
     // YOUR CODE BELOW HERE //
 
+    /*Compare strings last letter to char value in both lowercase/uppercase form,
+    and return true/false, accordingly.*/
     if (string[string.length - 1] === char.toLowerCase() || string[string.length - 1] === char.toUpperCase()) {
         return true;
     } else {
@@ -126,7 +134,7 @@ function endsWith(string, char) {
  */
 function concat(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
+    
     return stringOne + stringTwo;
 
     // YOUR CODE ABOVE HERE //
@@ -144,7 +152,9 @@ function concat(stringOne, stringTwo) {
  */
 function join(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
+    //arguments contains all arguments passed to function.
     var args = Array.from(arguments);
+    //Joins each string w/ no space.
     return args.join('');
 
     // YOUR CODE ABOVE HERE //
@@ -162,6 +172,7 @@ function join(stringOne, stringTwo) {
 function longest(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
 
+    //Compare length of both strings and set return value accordingly.
     if (stringOne.length > stringTwo.length) {
         return stringOne;
     } else {
@@ -181,6 +192,7 @@ function longest(stringOne, stringTwo) {
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
     
+    //let .localeCompare() do the work for you.
   return stringTwo.localeCompare(stringOne);
 
     // YOUR CODE ABOVE HERE //
@@ -199,6 +211,7 @@ function sortAscending(stringOne, stringTwo) {
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
 
+    //Same as above but switch reference string w/ comparison string.
     return stringOne.localeCompare(stringTwo);
 
 

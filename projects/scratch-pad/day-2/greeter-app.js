@@ -33,6 +33,7 @@
  *      the exact case.
  */
 
+//Print a message according to the current hour.
 function greeter(hour) {
     // YOUR CODE BELOW HERE //
     if (hour >= 0 && hour <= 11) {

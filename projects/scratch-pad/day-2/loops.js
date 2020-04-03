@@ -13,6 +13,7 @@
 function printArrayValues(array) {
   // YOUR CODE BELOW HERE //
   
+  /*Iterate through array and log each value.*/
   for (let i = 0; i < array.length; i++) {
     console.log(array[i]);
   }
@@ -28,6 +29,7 @@ function printArrayValues(array) {
 function printArrayValuesInReverse(array) {
   // YOUR CODE BELOW HERE //
   
+    //Iterate backwards through array and log each value.
     for (let i = array.length - 1; i > -1; i--) {
       console.log(array[i]);
     }
@@ -42,8 +44,9 @@ function printArrayValuesInReverse(array) {
 function getObjectKeys(object) {
   // YOUR CODE BELOW HERE //
   
-  let array = [];
+  let array = []; //Container to hold object keys.
   
+  //Iterates through object to acces and push each key value into array variable.
   for (let key in object) {
     array.push(key);
   }
@@ -60,6 +63,7 @@ function getObjectKeys(object) {
 function printObjectKeys(object) {
   // YOUR CODE BELOW HERE //
   
+  /*Iterate through object to access and log its keys.*/
   for (let key in object) {
     console.log(key)
   }
@@ -74,8 +78,9 @@ function printObjectKeys(object) {
 function getObjectValues(object) {
   // YOUR CODE BELOW HERE //
   
-  let array = [];
+  let array = []; //Container to hold object's values.
   
+  /*Iterate through object to access and push it's values into container array above.*/
   for (let key in object) {
     array.push(object[key]);
   };
@@ -92,6 +97,7 @@ function getObjectValues(object) {
 function printObjectValues(object) {
   // YOUR CODE BELOW HERE //
   
+  /*Iterate through object and log it's values.*/
   for (let key in object) {
     console.log(object[key]);
   }
@@ -106,8 +112,9 @@ function printObjectValues(object) {
 function getObjectLength(object) {
   // YOUR CODE BELOW HERE //
   
-  let length = 0;
+  let length = 0; //Container to hold count.
   
+  /*Iterates through object and adds 1 to the length variable for every iteration.*/
   for (let key in object) {
     length++;
   }
@@ -125,14 +132,17 @@ function getObjectLength(object) {
 function printObjectValuesInReverse(object) {
   // YOUR CODE BELOW HERE //
   
-  let arr = [];
+  let arr = []; //Container to hold object's values.
   
+  /*Iterate through object to access and push it's values into the arr array.*/
   for (let key in object) {
     arr.push(object[key]);
   };
   
+  //Reverse arr in place.
   arr.reverse();
   
+  /*Iterate through the arr array and log each value.*/
   for (let i = 0; i < arr.length; i++) {
     console.log(arr[i]);
   }

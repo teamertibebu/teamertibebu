@@ -13,7 +13,7 @@
  */
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
+    //Check if val is greater than base and return true/false, accordingly.
   let fn = function(val) {
          if(val > base){
              return true;
@@ -38,6 +38,7 @@ function createGreaterThanFilter(base) {
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
+    //Check to see if val is less than base and return true/false, accordingly.
     let fn = function (val) {
         if (val < base) {
             return true
@@ -64,7 +65,8 @@ function createStartsWithFilter(startsWith) {
     
     //function should take in string and compare
     return function(string) {
-        
+        /*If/else checks if startsWith === the first letter of the input string
+        and returns true/false, accordignly. Use .toLowerCase().*/
         if (startsWith.toLowerCase() === string.charAt(0).toLowerCase()) {
             return true;
         } else {
@@ -88,7 +90,8 @@ function createStartsWithFilter(startsWith) {
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
     
-    //Function should compare endsWith character with first letter in a given string.
+    /*Function should compare endsWith character with last letter in a given string
+    by comparing both in lowercase form.*/
     
     return function(string) {
         if (endsWith.toLowerCase() === string.charAt(string.length - 1).toLowerCase()) {
@@ -145,7 +148,10 @@ function modifyStrings(strings, modify) {
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
     
-    let bool;
+    let bool; //Container for current status of bool.
+    /*Iterate through strings array to plug each iteration into the test function.
+    Loop will push current iteration's true/false value. If any entry is false, 
+    loop will end and function will return false.*/
     for (let i = 0; i < strings.length; i++) {
         
         if(test(strings[i]) === true) {

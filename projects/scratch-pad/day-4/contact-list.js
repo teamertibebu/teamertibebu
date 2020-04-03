@@ -64,15 +64,15 @@ function makeContactList(contact) {
             return contacts.length;
         },
         
-        /*Function takes in a contact object and pushes it into the
+        /*addContact takes in a contact object and pushes it into the
         contacts array.*/
         addContact: function(contact) {
             contacts.push(contact);
         },
         
-        /*Function takes in a full name as string then loops through the contacts 
-        array to compare the concatenated first and last name from current iteration
-        to the full name string and if both are the same, returns the contact object,
+        /*findContact takes in a full name as string, loops through the contacts 
+        array, accessing the nameFirst & nameLast keys to concatenate and compare
+        to the fullName input, and ultimately returns the contact object if ===
         or undefined otherwise.*/
         
         findContact: function(fullName) {
@@ -83,11 +83,11 @@ function makeContactList(contact) {
                     return undefined;
                 }
             }
-        },
+        }, //Ends findContact method
         
-        /*Function takes in contact object, and by looping through the contacts
-        array to compare both .nameFirst properties in each to see if they are
-        similar, deletes that index if both properties are similar. */
+        /*removeContact takes in a contact object, loops through the contacts
+        array to compare both .nameFirst properties, and deletes that entry if both 
+        properties are ===. */
         
         removeContact: function(contact) {
             for (let i = 0; i < contacts.length; i++) {
@@ -95,7 +95,7 @@ function makeContactList(contact) {
                     contacts.splice(i, 1);
                 }
             }
-        }, //Ends removeContact function
+        }, //Ends removeContact method
         
         printAllContactNames: function() {
             
@@ -121,7 +121,7 @@ function makeContactList(contact) {
             
             return string;
             
-        }
+        } //Ends printAllContactNames method.
         
     } //Ends return statement
     
