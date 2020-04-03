@@ -34,26 +34,99 @@
  *          WARNING: To pass the bonus test, the LAST full name should have NO
  *          new-line character added after it!
  */
+ 
+ //INPUT: 
 
 // YOUR CODE GOES BELOW HERE //
+
+/*Factory function that takes in 3 params and returns an object w/ same params
+as keys and the arguments as values. */
 function makeContact(id, nameFirst, nameLast) {
 
+        return {
+            id: id,
+            nameFirst: nameFirst,
+            nameLast: nameLast
+            
+        };
 } 
 
 
-function makeContactList() {
+function makeContactList(contact) {
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts;
+    var contacts = []; //Stores contacts.
     
     return {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
+        },
+        
+        /*Function takes in a contact object and pushes it into the
+        contacts array.*/
+        addContact: function(contact) {
+            contacts.push(contact);
+        },
+        
+        /*Function takes in a full name as string then loops through the contacts 
+        array to compare the concatenated first and last name from current iteration
+        to the full name string and if both are the same, returns the contact object,
+        or undefined otherwise.*/
+        
+        findContact: function(fullName) {
+            for(let i = 0; i < contacts.length; i++) {
+                if(fullName === contacts[i].nameFirst + ' ' + contacts[i].nameLast) {
+                    return contacts[i];
+                } else {
+                    return undefined;
+                }
+            }
+        },
+        
+        /*Function takes in contact object, and by looping through the contacts
+        array to compare both .nameFirst properties in each to see if they are
+        similar, deletes that index if both properties are similar. */
+        
+        removeContact: function(contact) {
+            for (let i = 0; i < contacts.length; i++) {
+                if(contacts[i].nameFirst === contact.nameFirst) {
+                    contacts.splice(i, 1);
+                }
+            }
+        }, //Ends removeContact function
+        
+        printAllContactNames: function() {
+            
+            let fullNames = []; //Container for created full names.
+            
+            /*iterate through contacts array to access and concat nameFirst/nameLast
+            to create a fullName.*/
+            for (let i = 0; i < contacts.length; i++) {
+                fullNames.push(contacts[i].nameFirst + ' ' + contacts[i].nameLast) 
+            };
+            
+            
+            let string = ''; //Container for fullNames as a string w/ line breaks.
+            
+            for (let i = 0; i < fullNames.length; i++) {
+                //Iterate through fullNames array 
+                if(i !== fullNames.length - 1) {
+                    string += `${fullNames[i]}\n`;
+                } else if (i === fullNames.length - 1) {
+                    string += fullNames[i];
+                }
+            }
+            
+            return string;
+            
         }
-    }
-}
+        
+    } //Ends return statement
+    
+    
+} //Ends makeContactList function
 
 
 
