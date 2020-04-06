@@ -1,5 +1,5 @@
 /*
-* Datatypes:
+* DATATYPES:
 *
 * 0: Datatypes are, simply, types of data/values. All datatypes are either 
 * primitive or complex and have their own distinct qualities. 
