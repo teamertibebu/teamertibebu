@@ -107,6 +107,6 @@ switch (myAge) {
     
     default:
     console.log('Invalid Input.')
-}
+};
 
 
