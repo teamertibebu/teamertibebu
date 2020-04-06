@@ -67,7 +67,7 @@ function hairColor () {
 
 hairColor(); 
 console.log(hair); //Logs black because hair was declared in the global scope.
-console.log(eyes) //Logs 'reference error' because eyes does not exist outside of the local scope of the function. 
+//console.log(eyes) //Logs 'reference error' because eyes does not exist outside of the local scope of the function. 
 
 /*Variables are function scoped. This means that variables will be stuck in the scope
 *of a function if declared within. The same is NOT TRUE with if/else & for loop blocks.
@@ -156,6 +156,6 @@ const eyeColor = 'red';
 
 
 // Reassignment/Redeclaration //
-const greeting = 'Hello';
-greeting = 'Bye'; //Logs a type error because constants cannot be reassigned.
-const greeting = 'Bye' //Logs a syntax error becuase constants cannot be redeclared.
+const greeting2 = 'Hello';
+greeting2 = 'Bye'; //Logs a type error because constants cannot be reassigned.
+
