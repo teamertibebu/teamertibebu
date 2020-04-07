@@ -12,11 +12,28 @@
 // Step 1 - Object Creation //////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+var animal = {
+    
+};
 
+animal.species = 'Lion';
+animal['name'] = 'Joe';
+animal.noises = [];
+console.log(animal);
 
 //////////////////////////////////////////////////////////////////////
 // Step 2 - Array Creation ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
+
+var noises = [];
+noises[0] = 'rawr';
+noises.push('meow');
+noises.unshift('heya');
+noises[noises.length] = 'simba';
+console.log(noises.length);
+console.log(noises[noises.length - 1]);
+console.log(noises);
+
 
 
 
@@ -24,14 +41,22 @@
 // Step 3 - Combining Step 1 and 2 ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-
+animal['noises'] = noises;
+noises.push('hello');
+console.log(animal);
 
 /* *******************************************************************
  * Step 4 - Review
  *
  * 1. What are the different ways you can access properties on objects?
+ * 
+ * You can access properties in an object by using bracket/dot notation
+ * and for-in loops.
  *
  * 2. What are the different ways of accessing elements on arrays?
+ *
+ * You can access elements in an array using bracket notation w/ indices
+ * and for loops.
  *
  * *******************************************************************
  */
@@ -49,12 +74,43 @@
 // Step 6 - A Collection of Animals //////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+var animals = [];
+animals.push(animal);
+console.log(animals);
+var duck = { species: 'duck', name: 'Jerome', noises: ['quack', 'honk', 'sneeze', 'woosh'] };
+animals.push(duck);
+console.log(animals);
+
+var tiger = {
+    species: 'tiger',
+    name: 'Truman', 
+    noises: ['rawr', 'meow'],
+};
+
+var cow = {
+    species: 'cow',
+    name: 'Jesse',
+    noises: ['moo', 'mooo']
+};
+
+animals.push(tiger, cow);
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 7 - Making Friends ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+var friends = []; //Arrays allow us to aggregate values as lists.
+
+function getRandom(array) {
+    var randomIndex = Math.floor(Math.random() * array.length);
+    return randomIndex;
+    
+    friends.push(array[randomIndex].name);
+};
+
+animals[0].friends = friends;
+console.log(friends);
 
 
 /**

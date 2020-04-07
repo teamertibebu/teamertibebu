@@ -1,4 +1,6 @@
-var data = { results: [ 
+var data = { 
+  
+    results: [ 
   { animal: 'fox', 
     numberOfLegs: 4, 
     says: '??', 
@@ -41,14 +43,22 @@ var data = { results: [
     matches: 
       [ 'fish', 'human', 'chicken', 'whale']
   }
-  ]};
+  
+  ] //Ends results array.
+  
+}; //Ends data object.
 
-  // Use the .length property to console.log the length of the results
-  // array.
+  // Use the .length property to console.log the length of the results array.
+  
+  console.log(data.results.length)
 
   // Imagine you want are making a search results page,
   // (console.log) all of the animal names in order.
-
+  
+  // for(let i = 0; i < data.results.length; i++) {
+  //   console.log(data.results[i].animal);
+  // }
+  
   // Next, Capitalize the first letter of each name and put a label
   // Your end result should look like this:
   // Name: Fox
@@ -57,6 +67,15 @@ var data = { results: [
   // Name: Human
   // Name: Fish
   // etc.
+  for(let i = 0; i < data.results.length; i++) {
+   let split = data.results[i].animal.split(''); //Array of individual letters
+    let cap = split[0].toUpperCase();
+    split.splice(0, 1, cap);
+
+    let join = split.join('');
+    
+    console.log(`Name: ${join}`)
+   }
 
   // Next, console.log the number of legs next to their name.
   // Your end result should look like this:
@@ -66,20 +85,76 @@ var data = { results: [
   // Name: Human, Legs: 2
   // Name: Fish, Legs: 0
 
+    for(let i = 0; i < data.results.length; i++) {
+   let split = data.results[i].animal.split(''); //Array of individual letters
+    let cap = split[0].toUpperCase();
+    split.splice(0, 1, cap);
+
+    let join = split.join('');
+    
+    console.log(`Name: ${join}, Legs: ${data.results[i].numberOfLegs}`)
+   }
+
   // Now, redo the steps in the previous one and 
   // take this data and add it to an array with nested objects. 
   // Your result should look like this:
-  var results = [
-  {Name: 'Fox', Legs: 4},
-  {Name: 'Dog', Legs: 4},
-  {Name: 'Frog', Legs: 4},
-  {Name: 'Human', Legs: 2},
-  {Name: 'Fish', Legs: 0}
-  ];
+  // var results = [
+  // {Name: 'Fox', Legs: 4},
+  // {Name: 'Dog', Legs: 4},
+  // {Name: 'Frog', Legs: 4},
+  // {Name: 'Human', Legs: 2},
+  // {Name: 'Fish', Legs: 0}
+  // ];
+
+  let results = [];
+
+    for(let i = 0; i < data.results.length; i++) {
+   let split = data.results[i].animal.split(''); //Array of individual letters
+    let cap = split[0].toUpperCase();
+    split.splice(0, 1, cap);
+
+    let join = split.join('');
+    let obj = {
+      Name: join,
+      Legs: data.results[i].numberOfLegs
+    }
+    
+    results.push(obj)
+
+    
+   }
+   console.log(results)
 
   // For another search result, console.log the animals whose matches are 'fish'
-
+  for(let i = 0; i < results.length; i++) {
+    if(results[i].Name === 'Fish') {
+      console.log(results[i]);
+    }
+  }
   // Next, add it to an array called 'FishMatches'. 
+
+  let FishMatches = [];
+  for(let i = 0; i < results.length; i++) {
+    if(results[i].Name === 'Fish') {
+      FishMatches.push(results[i]);
+    }
+  }
+
+  console.log(FishMatches)
   // Make each match an object with two properties 'name' and 'index'
+  let fishMatches = [];
+
+  for(let i = 0; i < results.length; i++) {
+    if(results[i].Name === 'Fish') {
+      let object = {
+        name: 'Fish',
+        index: i
+      };
+
+      fishMatches.push(object)
+    }
+  }
+
+  console.log(fishMatches)
   // Your end result should look like this:
-  var fishMatches = [{name: 'dog', index: 2}, {name: 'whale', index:5}];
+  // var fishMatches = [{name: 'dog', index: 2}, {name: 'whale', index:5}];
