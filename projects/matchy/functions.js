@@ -32,15 +32,9 @@ function search(animals /*array*/, name /*string*/) {
 //////////////////////////////////////////////////////////////////////
 
 function replace(animals, name, replacement) {
-    /*Iterate through the animals input array to check the existence of an animal with the 
-    name input. If animal w/ that name exists, replace its entire object w/
-    the replacement object input.*/
-    
-    //Step 1: Check existence of animal by the name.
     for(let i = 0; i < animals.length; i++) {
         if(name === animals[i].name) {
-            //Step 2: If true, replace entire object w/ the replacement object input.
-            return animals[i] = replacement;
+            animals[i] = replacement;
         }
     }
 }
@@ -64,41 +58,28 @@ function remove(animals, name) {
 // Step 4 - Add ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function add(animals, animal) {
-    /*Check if the animal input object has, both, a name and species property 
-    with length > 0.*/
+function add (animals, animal) {
+    // let matchAny = false; ///Conatainer for truthyness of name === name.
     
-        if(animal.name.length > 0 && animal.species.length > 0) {
-            
-            /*If true, check to see if the animal has a unique name by iterating
-            through the animals array and checking animal.name against 
-            the current iterations name property.*/
-            
-            let unique; //Hold current truthyness of name uniqueness.
-            
-            for(let i = 0; i < animals.length; i++) {
-                
-                
-                if(animal.name.toLowerCase() === animals[i].name.toLowerCase()) {
-                    /*If true, unique gets set to false and automatically ends 
-                    the program by returning null, because we must have NO
-                    MATCHES in order to add the animal.*/
-                    unique = false;
-                    return null;
-                } else {
-                    //Esle we continue to set unique to true until the loop finishes.
-                    unique = true;
-                }
-                
-            } //Ends for loop
-            
-            /*If no name matches were found, we return the animal object 
-            pushed into the animals array.*/
-            if(unique === true) {
-                    return animals.push(animal)
-                }
-                
-        } //Ends outermost if statement.
+    //Makes sure a name & species property exists, first.
+    if(animal.name.length > 0 && animal.species.length > 0) {
+        //If true, Loops through the the animals array to see if an animal w/
+        //the input animal object's name already exists.
+        for(let i = 0; i < animals.length; i++) {
+            //Check existence.
+            if(animal.name.toLowerCase() === animals[i].name.toLowerCase()) {
+                //If we come across even one match in the name values, we should
+                //automatically kick out of the loop by returning null.
+            //   matchAny = true; 
+               return null;
+            } 
+        }
+        //If we dont come across any matches, we kick out the for loop and
+        //and return the animal object input pushed into the animals array.
+        return animals.push(animal);
+        
+    }
+    
 }
 
 /**
