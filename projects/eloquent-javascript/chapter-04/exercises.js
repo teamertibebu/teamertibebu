@@ -2,23 +2,73 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range() {
+function range(start, end, step = 1) {
+  
 
-}
+  let rangeOfNums = [];
+  
+  if(start === end || Math.sign(step) === -1) {
+      
+      return [];
+      
+  } else if (start < end) {
+    
+      for(let i = start; i <= end; i += step) {
+        rangeOfNums.push(i);
+      }
+    
+  } else if (start > end) {
+    
+      for(let i = start; i >= end; i -= Math.abs(step)) {
+        rangeOfNums.push(i);
+      }
+    
+  }
+  
+  return rangeOfNums;
+
+} //Ends range()
+
+console.log(range(0, 20, 2))
 
 ////////////////////////////////////////////////////////////////////////////////
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function sum() {
-
+function sum(arr) {
+  
+  let sum = 0;
+  
+  if(arr === []) {
+    return 0;
+  } else {
+    for(let i = 0; i < arr.length; i++) {
+      sum += arr[i];
+    }
+  }
+  
+  return sum;
+  
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArray() {
+function reverseArray(array) {
+  
+    if(array === []) {
+      
+        return [];
+      
+    } else {
+      
+        let arr = array.slice().reverse();
+    
+        return arr;
+      
+    }
+    
 
 }
 
@@ -26,7 +76,19 @@ function reverseArray() {
 // reverseArrayInPlace /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArrayInPlace() {
+function reverseArrayInPlace(array) {
+
+    if(array === []) {
+      
+        return [];
+      
+    } else {
+      
+        let arr = array.reverse();
+    
+        return arr;
+      
+    }
 
 }
 
@@ -34,7 +96,20 @@ function reverseArrayInPlace() {
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
+function arrayToList(array) {
+
+  if(array.length === 0) {
+
+      return null;
+
+  } else {
+
+      return {
+        value: array[0],
+        rest: arrayToList(array.slice(1))
+      }
+
+  }
 
 }
 
@@ -42,9 +117,17 @@ function arrayToList() {
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {
+  
+  function listToArray(object) {
 
+  if(object.rest === null) {
+    return object.value
+  } else {
+    return [object.value].concat(listToArray(object.rest));
+    // return [3,2].concat()
+  }
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
