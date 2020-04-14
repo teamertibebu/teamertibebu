@@ -230,7 +230,10 @@ function deepEqual(val1, val2) {
           } else {
             return false;
           }
-      }
+      };
+      
+      
+      
       
       //Use a conditional to check if both the values are either null or undefined. 
       //If so, use a nested conditional to check if the falsey values are strictly equal.
@@ -240,11 +243,14 @@ function deepEqual(val1, val2) {
         } else {
           return false;
         }
-      }
+      };
+      
+      
       
       
       //Use a conditional to check if both values are objects. If so, compare 
       //the objects' properties for deep equality.
+     
       if((typeof val1 === 'object' && val1 !== null) && (typeof val2 === 'object' && val2 !== null)) {
         //Create two variables to house the property keys of both values.
         let val1Keys = Object.keys(val1);
@@ -264,24 +270,16 @@ function deepEqual(val1, val2) {
             }
           }
           
-          // //Use a conditional to check if any of the matching keys have a values
-          // //of nested arrays. If so, make sure the arrays are equal.
-          // for(let i = 0; i < val1Keys.length; i++){
-          //   for(let j = 0; j < val2Keys.length; j++) {
-          //     if(val1[val1Keys[i]] !== val2[val2Keys[j]]) {
-          //       return false;
-          //     }
-          //   }
-          // }
-          
-          
+           if(_.isEqual(val1, val2)) {
+              return true;
+            }
           
            //If the above for loop matches all elements, which are property keys,
           //use another nested for loop to check that all the values of the
           //corresponding keys are equal. If not, return false.
           for(let i = 0; i < val1Keys.length; i++){
             for(let j = 0; j < val2Keys.length; j++) {
-              if(Array.isArray(val1[val1Keys[i]] === true && Array.isArray(val2[val2Keys[j]] === true))) {
+              if(Array.isArray(val1[val1Keys[i]]) === true && Array.isArray(val2[val2Keys[j]]) === true) {
                 for(let k = 0; k < val1[val1Keys[i]].length; k++) {
                       for(let l = 0; l < val2[val2Keys[j]].length; l++) {
                         if(val1[val1Keys[i]][k] !== val2[val2Keys[j]][l]) {
@@ -289,7 +287,6 @@ function deepEqual(val1, val2) {
                       }
                     }
                   }
-                  return true;
               }
               
               if(val1[val1Keys[i]] !== val2[val2Keys[j]]) {
@@ -300,32 +297,11 @@ function deepEqual(val1, val2) {
           }
           
           
-          // for(let i = 0; i < val1Keys.length; i++){
-          //   for(let j = 0; j < val2Keys.length; j++) {
-          //     if(val1Keys[i] === val2Keys[j]) {
-          //         if(Array.isArray(val1[val1Keys[i]]) === true && Array.isArray(val2[val2Keys[j]]) === true) {
-          //           for(let k = 0; k < val1[val1Keys[i]].length; k++) {
-          //             for(let l = 0; l < val2[val2Keys[j]].length; l++) {
-          //               if(val1[val1Keys[i][k]] !== val2[val2Keys[j][l]]) {
-          //                 return false;
-          //             }
-          //           }
-          //         }
-          //         return true;
-          //       } //Ends Array.isArray() conditional.
-          //     }
-          //   }
-          // }
-          
-          
-         
-          
-          
-          
         //If all of the properties' keys and values match, return true.
         return true;
         }
       } //Ends the conditional that tests for objects with same properties and values.
+      
       
 
 }

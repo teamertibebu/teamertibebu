@@ -102,6 +102,7 @@ function countBy(items, groupName) {
 function dominantDirection(text) {
   
   
+
   //Using the characterScript and countBy functions, find the scripts being used 
   //and count the characters that belong to each script.
 
