@@ -220,92 +220,41 @@ function nth(list, num) {
 
 //Create a function that takes two values as it's inputs and returns true only
 //if they are the same values or, if they are objects, have the same properties.
-function deepEqual(val1, val2) {
-      //Use a conditional to check if both values are numbers. If so, use a nested
-      //conditional to check if they are strictly equal, if so, return true, otherwise,
-      //return false.
-      if(typeof val1 === 'number' && typeof val2 === 'number') {
-          if(val1 === val2) {
-            return true;
-          } else {
-            return false;
-          }
-      };
-      
-      
-      
-      
-      //Use a conditional to check if both the values are either null or undefined. 
-      //If so, use a nested conditional to check if the falsey values are strictly equal.
-      if(val1 === null || val1 === undefined && val2 === null || val2 === undefined) {
-        if(val1 === val2) {
-          return true;
-        } else {
-          return false;
-        }
-      };
-      
-      
-      
-      
-      //Use a conditional to check if both values are objects. If so, compare 
-      //the objects' properties for deep equality.
-     
-      if((typeof val1 === 'object' && val1 !== null) && (typeof val2 === 'object' && val2 !== null)) {
-        //Create two variables to house the property keys of both values.
-        let val1Keys = Object.keys(val1);
-        let val2Keys = Object.keys(val2);
-        //Use a conditional to check if both arrays of keys have the same length,
-        //if not, automatically return false.
-        if(val1Keys.length !== val2Keys.length) {
-          return false;
-        } else {
-        //Else, use a nested for loop and a conditional to check that the arrays
-        //contain the same keys.
-          for(let i = 0; i < val1Keys.length; i++) {
-            for(let j = 0; j < val2Keys.length; j++) {
-                if(val1Keys[i] !== val2Keys[j]) {
-                  return false;
-                }
-            }
-          }
-          
-           if(_.isEqual(val1, val2)) {
-              return true;
-            }
-          
-           //If the above for loop matches all elements, which are property keys,
-          //use another nested for loop to check that all the values of the
-          //corresponding keys are equal. If not, return false.
-          for(let i = 0; i < val1Keys.length; i++){
-            for(let j = 0; j < val2Keys.length; j++) {
-              if(Array.isArray(val1[val1Keys[i]]) === true && Array.isArray(val2[val2Keys[j]]) === true) {
-                for(let k = 0; k < val1[val1Keys[i]].length; k++) {
-                      for(let l = 0; l < val2[val2Keys[j]].length; l++) {
-                        if(val1[val1Keys[i]][k] !== val2[val2Keys[j]][l]) {
-                          return false;
-                      }
-                    }
-                  }
-              }
-              
-              if(val1[val1Keys[i]] !== val2[val2Keys[j]]) {
-                return false;
-              }
-              return true;
-            }
-          }
-          
-          
-        //If all of the properties' keys and values match, return true.
-        return true;
-        }
-      } //Ends the conditional that tests for objects with same properties and values.
-      
-      
+function deepEqual(a,b) {
 
+
+  if(a === b) {
+    return true;
+  };
+  
+  //If either a or b are either null or not an object, return false.
+  if (a == null || typeof a != "object" || b == null || typeof b != "object") {
+    return false;
+  }
+  
+  //Create two variables that houses how man keys belong to the properties.
+  let aKeys = 0;
+  let bKeys = 0;
+
+  //Iterate through the a array and increment aKeys by 1 at every iteration.
+  for (var prop in a) {
+    aKeys += 1;
+  }
+  
+  //Iterate through the b array and increment bKeys by 1 at every iteration.
+  for (var prop in b) {
+    bKeys += 1;
+    //At every iteration of object b, 
+    if (!(prop in a) || !deepEqual(a[prop], b[prop])) {
+      if (!(prop in a));
+      if (!deepEqual(a[prop], b[prop]));
+      return false;
+    }
+  }
+  return aKeys == bKeys;
 }
 
+      
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
