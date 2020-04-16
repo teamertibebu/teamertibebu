@@ -330,20 +330,16 @@ _.filter = function (array, func) {
 
 _.reject = function(array, func) {
     
-    //Container to house all elements when func is called and === false.
-    var falseArray = [];
+   
     //Call filter supplying it an array and an anonymouse function. In the anonymous
     //function we will invoke <func> which takes in an element, it's index, and
-    //<array>, and if it returns falsey, we will push the current element into
-    //falseArray.
-    _.filter(array, function(element, index, array) {
-        if(func(element, index, array) === false) {
-            falseArray.push(element)
-        }
+    //<array>, and for each return value of the func call that is === false, a 
+    //new array of those values will be returned by the filter function.
+    return _.filter(array, function(element, index, array) {
+         return func(element, index, array) === false
     })
-    //Return the final falseArray w/ all elements that returned false in the 
-    //above conditional.
-    return falseArray;
+   
+    
 };
 
 
@@ -624,6 +620,8 @@ _.reduce = function(array, func, seed) {
     return previousResult;
     
 }
+
+
 
 
 
