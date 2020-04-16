@@ -3,7 +3,7 @@
 'use strict';
 
 var customers = require('./data/customers.json');
-var _ = require(/* Replace this with the name of your lodown! */);
+var _ = require("lodown-teamertibebu");
 
 /**
  * 1. Import your lodown module using the require() method,
@@ -16,7 +16,7 @@ var _ = require(/* Replace this with the name of your lodown! */);
  *
  * 4. To test your work, run the following command in your terminal:
  *
- *    npm start --prefix ./<YOUR_GITHUB_FOLDER/projects/let-s-get-functional
+ *    npm start --prefix ./projects/let-s-get-functional
  *
  *    IMPORTANT: Make sure you replace <YOUR_GITHUB_FOLDER with your actual github folder name that is in your workspace.
  */
@@ -27,11 +27,51 @@ var maleCount = function(array) {
 
 var femaleCount;
 
-var oldestCustomer;
+var oldestCustomer = function(array) {
+    //Create oldest variable.
+    let oldest = 0;
+    let name = '';
+    _.filter(array, function(customerObj) {
+        
+        //Loop through list of customer objects
+        if(customerObj.age > oldest) {
+            oldest = customerObj.age
+            name = customerObj.name
+        }
+           
+    })
+ return name;   
+}
 
-var youngestCustomer;
+var youngestCustomer = function(array) {
+    // input: array
+    // output: string
+    //Create youngest variable.
+    let youngest = array[0].age;
+    let name = '';
+        //Loop through list of customer objects   
+        _.filter(array, function(customerObj) {
+            if(customerObj.age < youngest) {
+                youngest = customerObj.age;
+                name = customerObj.name;
+        }
+            //Compare current age to highest age
+    });
+ return name;   
+};
 
-var averageBalance;
+var averageBalance = function(array) {
+    let average = 0;
+    
+    _.filter(array, function(customerObj) {
+        
+        average += Number(customerObj.balance)
+        
+    })
+    
+    return average/array.length
+    
+};
 
 var firstLetterCount;
 
