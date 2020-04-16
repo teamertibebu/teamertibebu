@@ -250,7 +250,32 @@ _.each = function(collection, func) {
 *   2) Use _.indexOf() from above
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
+* 
 */
+
+//Create a function that returns a new array of all ements from the input array
+//with duplicates removed.
+_.unique = function(array) {
+    //Container to hold all unique elements from the array input.
+    let newArray = [];
+    //Use a for loop to iterate through the input array and push all first 
+    //occurences of an element into the newArray array.
+    for(let i = 0; i < array.length; i++) {
+        //If the element of the current iteration of the array input is not
+        //in newArray, push that element into newArray. Once we reach a duplicate
+        //element that has already been pushed into newArray, that element will
+        //not return -1, thus not pushing it into newArray.
+        if(newArray.indexOf(array[i]) === -1) {
+            newArray.push(array[i])
+    }
+    
+}
+    //Once we finish all iterations of the for loop, all unique elements will have
+    //been pushed into newArray. Return newArray.
+    return newArray;
+}    
+
+
 
 
 /** _.filter
@@ -270,6 +295,25 @@ _.each = function(collection, func) {
 */
 
 
+_.filter = function (array, func) {
+    
+    //Container to house all elements when func is called and === true.
+    var resultArray = [];
+    
+    //Use a conditional to test if calling func is true, if so, push the current
+    //iterations element into resultArray/
+    for(let i = 0; i < array.length; i++) {
+        if(func(array[i], i, array) === true) {
+            resultArray.push(array[i]);
+        }
+        
+}
+    return resultArray;
+    
+}
+
+
+
 /** _.reject
 * Arguments:
 *   1) An array
@@ -282,6 +326,24 @@ _.each = function(collection, func) {
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
+
+
+_.reject = function(array, func) {
+    
+        //Container to house all elements when func is called and === true.
+    var falseArray = [];
+    
+    //Use a conditional to test if calling func is false, if so, push the current
+    //iterations element into falseArray.
+    for(let i = 0; i < array.length; i++) {
+        if(func(array[i], i, array) === false) {
+            falseArray.push(array[i]);
+        }
+        
+    }
+    return falseArray;
+    
+};
 
 
 /** _.partition
@@ -304,6 +366,30 @@ _.each = function(collection, func) {
 */
 
 
+_.partition = function(array, func) {
+    //Create three variables, all assigned to empty array literals. The first will
+    //house all truthy elements, the second all falsy elements, and third will
+    //be our container to house both final arrays.
+    var truthyArray = [];
+    var falsyArray = [];
+    var joinedArray = [];
+    //Use a for loop to iterate through our input array and test the truthyness
+    //of it. Push the elements to their corresponding arrays.
+    for(let i = 0; i < array.length; i++) {
+        if(func(array[i], i, array) === true) {
+            truthyArray.push(array[i]);
+        } else if (func(array[i], i, array) === false) {
+            falsyArray.push(array[i]);
+        }
+    }
+    //Push both truthyArray and falsyArray into joinedArray.
+    joinedArray.push(truthyArray, falsyArray)
+    
+    return joinedArray;
+    
+}
+
+
 /** _.map
 * Arguments:
 *   1) A collection
@@ -321,6 +407,38 @@ _.each = function(collection, func) {
 */
 
 
+_.map = function(collection, func) {
+    //Create an empty array literal that will house return values of each
+    //<func> call.
+    var aNewArray = [];
+    //Use a conditional to check whether collection is either an array or object.
+    if(Array.isArray(collection)) {
+        //Use a for loop to iterate through the array and call <func> on each
+        //element.
+        for(let i = 0; i < collection.length; i++) {
+            //Declare a variable and assign to it the return values of the
+            //function calls. This variable will be reset with each function call
+            //return value. 
+            var returnValOfElement = func(collection[i], i, collection);
+            //Push returnValOfElement into the aNewArray array.
+            aNewArray.push(returnValOfElement);
+        }
+    //If collection is an objec...
+    } else if(collection !== null || typeof collection === 'object') {
+        //Iterate through the object.
+        for(let key in collection) {
+            //Declare a variable to hold the current value of <func> call.
+            var returnValOfObj = func(collection[key], key, collection)
+            //Push the return val of <func> into the aNewArray array.
+            aNewArray.push(returnValOfObj);
+        }
+    }  
+    //Return the final array.
+    return aNewArray;
+    
+}
+
+
 /** _.pluck
 * Arguments:
 *   1) An array of objects
@@ -331,6 +449,17 @@ _.each = function(collection, func) {
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
+
+
+_.pluck = function(arrayOfObj, property) {
+    //Return the value of calling map on arrayOfObj.
+   return arrayOfObj.map((element, index, arrayOfObj) => {
+       //Tell map what to return. In this case, return <property> for every
+       //element in <arrayOfObj>.
+        return element[property]
+   })
+    
+}
 
 
 /** _.every
@@ -355,6 +484,40 @@ _.each = function(collection, func) {
 */
 
 
+
+_.every = function(collection, func){ //takes in a collection and a function
+    var bool = true; //make a variable bool, default set to true
+    if(Array.isArray(collection)){ //test if collection is array
+        if(func == null || func === undefined) { //if array, and no function provided
+            for(let i = 0; i < collection.length; i++){ //iterate over the collection
+                if(collection[i] === false) { //if collection contains a falsy element
+                    bool = false; //change bool to false
+                    return bool; //return bool (false)
+                }
+            }
+            return bool; //if no function provided, and no elements evaluate to falsy, return bool as true
+        } else { //otherwise, if there is a function provided
+            for(let i = 0; i < collection.length; i++){ //iterate over the array function to every element its index, whole collection
+                if(func(collection[i], i, collection) === false) { // if one element evaluates to false 
+                    bool = false; //change bool to false
+                    return bool; //return bool
+                }
+            }
+        }
+        return bool; //if no elements evaluate to false, return bool as true
+    } else if(collection !== null || typeof collection === 'object'){ //else if the collection is an object
+        for(var key in collection){ //iterate over the object and apply function to current value, current key, whole collection on each iteration
+            if(func(collection[key], key, collection) === false) { //if one of the elements evaluates to false
+                bool = false; //change bool to false
+                return bool; //return bool as false
+            }                
+        }
+        return bool; //if no elements evaluate to false, return bool as true
+    }
+}
+
+
+
 /** _.some
 * Arguments:
 *   1) A collection
@@ -377,6 +540,40 @@ _.each = function(collection, func) {
 */
 
 
+_.some = function(collection, func){ //takes in a collection and a function
+    var bool = false; //make a variable bool, default set to false
+    if(Array.isArray(collection)){ //test if collection is array
+        if(func == null || func === undefined) { //if array, and no function provided
+            for(let i = 0; i < collection.length; i++){ //iterate over the collection
+                if(collection[i] === true) { //if collection contains a truthy element
+                    bool = true; //change bool to true
+                    return bool; //return bool (true)
+                }
+            }
+            return bool; //if no function provided, and no elements evaluate to truthy, return bool as false
+        } else { //otherwise, if there is a function provided
+            for(let i = 0; i < collection.length; i++){ //iterate over the array function to every element its index, whole collection
+                if(func(collection[i], i, collection) === true) { // if one element evaluates to true 
+                    bool = true; //change bool to true
+                    return bool; //return bool
+                }
+            }
+        }
+        return bool; //if no elements evaluate to false, return bool as true
+    } else if(collection !== null || typeof collection === 'object'){ //else if the collection is an object
+        for(var key in collection){ //iterate over the object and apply function to current value, current key, whole collection on each iteration
+            if(func(collection[key], key, collection) === true) { //if one of the elements evaluates to true
+                bool = true; //change bool to true
+                return bool; //return bool as true
+            }                
+        }
+        return bool; //if no elements evaluate to true, return bool as false
+    }
+}
+
+
+
+
 /** _.reduce
 * Arguments:
 *   1) An array
@@ -397,6 +594,40 @@ _.each = function(collection, func) {
 */
 
 
+_.reduce = function(array, func, seed) {
+    //Create a variable that will either be the first element of the given array
+    //or seed, if provided.
+    var previousResult;
+    //Use a conditional to check if <seed> is provided.
+    if(seed === null || seed == undefined || seed === false) {
+        //If <seed> is not provided, use the first element of <array> as <seed>
+        previousResult = array[0];
+        //Use a for loop to iterate through the array and call the given 
+        //function on every element of <array>.
+        for(let i = 1; i < array.length; i++) {
+        //Reassign the return value of the function call as the new current 
+        //value(previousResult).
+            previousResult = func(previousResult, array[i], i)
+        }
+    } else if(seed != null && seed != undefined) {
+        //If seed IS provided, set it to previousResult variable to use as the seed.
+        previousResult = seed;
+        //Use a for loop to iterate through the array and call the given function
+        //on every element of <array>.
+        for(let i = 0; i < array.length; i++) {
+            //Through every iteration, assign the function return value to 
+            //previousResult to use as the current value.
+            previousResult = func(previousResult, array[i], i)
+        }
+    }
+    return previousResult;
+    
+}
+
+
+
+
+
 /** _.extend
 * Arguments:
 *   1) An Object
@@ -411,6 +642,15 @@ _.each = function(collection, func) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+
+_.extend = function(obj1, obj2, ...objects) { //Takes in two or possibly more object inputs.
+    //Use Object.assign to the target object all the properties of the source object(s).
+    //Then assign to a variable.
+    var returnedTarget = Object.assign(obj1, obj2, ...objects);
+    //Return variable holding the remianing object.
+    return returnedTarget
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
