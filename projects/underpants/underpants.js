@@ -643,13 +643,8 @@ _.reduce = function(array, func, seed) {
 */
 
 
-_.extend = function(obj1, obj2, ...objects) { //Takes in two or possibly more object inputs.
-    //Use Object.assign to the target object all the properties of the source object(s).
-    //Then assign to a variable.
-    var returnedTarget = Object.assign(obj1, obj2, ...objects);
-    //Return variable holding the remianing object.
-    return returnedTarget
-}
+
+
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

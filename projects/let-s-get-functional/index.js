@@ -61,21 +61,44 @@ var youngestCustomer = function(array) {
 };
 
 var averageBalance = function(array) {
-    let average = 0;
+    // call reduce function to loop through each objet in array
+    let sum2 = _.reduce(array, function sum(acc, currentVal, seed) {
+        let currency = currentVal.balance;
+        let currency2 = currency.slice(1);
+        let currency3 = parseFloat(currency2.replace(/,/g, ''));
+        return acc + currency3;
+    }, 0);
+    return sum2 / array.length;
+};
+
+var firstLetterCount = function(array, letter) {
+    let count = 0;
     
     _.filter(array, function(customerObj) {
         
-        average += Number(customerObj.balance)
-        
+        if(customerObj.name[0].toUpperCase() == letter.toUpperCase()) {
+            count++;
+        }
     })
-    
-    return average/array.length
-    
+   return count; 
 };
 
-var firstLetterCount;
-
-var friendFirstLetterCount;
+var friendFirstLetterCount = function(array, customer, letter) {
+    // input: array, customer, letter
+    // output: number
+    let count = 0;
+    _.filter(array, function(customerObj) {
+        if (customerObj.name == customer){
+            let friendsList = customerObj.friends;
+            for(let i = 0; i < friendsList.length; i++) {
+                if (friendsList[i].name[0].toUpperCase() === letter.toUpperCase()) {
+                    count ++;
+                }
+            }
+        }
+    });
+    return count;
+};
 
 var friendsCount;
 
