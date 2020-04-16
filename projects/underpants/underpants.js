@@ -330,19 +330,20 @@ _.filter = function (array, func) {
 
 _.reject = function(array, func) {
     
-        //Container to house all elements when func is called and === true.
+    //Container to house all elements when func is called and === false.
     var falseArray = [];
-    
-    //Use a conditional to test if calling func is false, if so, push the current
-    //iterations element into falseArray.
-    for(let i = 0; i < array.length; i++) {
-        if(func(array[i], i, array) === false) {
-            falseArray.push(array[i]);
+    //Call filter supplying it an array and an anonymouse function. In the anonymous
+    //function we will invoke <func> which takes in an element, it's index, and
+    //<array>, and if it returns falsey, we will push the current element into
+    //falseArray.
+    _.filter(array, function(element, index, array) {
+        if(func(element, index, array) === false) {
+            falseArray.push(element)
         }
-        
-    }
+    })
+    //Return the final falseArray w/ all elements that returned false in the 
+    //above conditional.
     return falseArray;
-    
 };
 
 
