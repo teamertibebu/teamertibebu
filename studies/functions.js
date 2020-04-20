@@ -64,18 +64,43 @@ newGreeting('Teamer Tibebu!');
 //This anonymous function is assigned to the variable newGreeting.
 //In order to call the function, you use the variable name with paranthesis housing the arguments.
 
-// Closures //
-/* 
-* Below, through closures, the function is able to access the variables 
-* firstName and lastName.
+//Scope//
+/*
+* Scope deteremines what variables are accessible, where. Global scope is anything
+* outside of a function that is not contained within another function and local
+* scopes are within a function body.
 */
 
-let firstName = 'Teamer';
-let lastName = 'Tibebu';
+let count = 0; //count is declared in the global scope. <func> has access to this variable.
 
-function fullName() {
-    return firstName + ' ' + lastName;
-}
+function func() {
+    let number = 9; //number is declared within the local scope of <func>. This
+    //variable is only accessible within <func>.
+    return count++; //Because <count> is accessible to <func>, it will increment by one at function call.
+};
 
-fullName(); //Returns the string 'Teamer Tibebu'
+func();
+console.log(count); //Will log 1 to the console.
+console.log(number); //Will log a reference error because number is only accessible within <func>. It
+//does not exist in the global scope.
+
+
+// Closures //
+/* 
+* Below, through closures, the nested function <add> has access to the variable
+* <count>, which was declared in the local scope of the function <counter>.
+*/
+
+function counter() {
+    var count = 0; 
     
+    function add() {
+        return count++;
+    };
+    
+    add()
+    
+    return count;
+}
+    
+counter(); //Will return 1

@@ -46,6 +46,24 @@ was not met, the program would have tested for the remaining else-if condition. 
 else-if conditions are false, the program would run the block of code associated with
 the remaining else statement.*/
 
+//SYNTAX//
+
+/**
+ * In order to begin an if/else-if/else conditional statement, we must begin with
+ * the 'if' keyword. After the 'if' keyword, in paranthesis, we place the condition
+ * to be tested for. Following the paranthesis with the expression to be tested, we 
+ * have a set of curly braces which house the code to be ran if the corresponding
+ * expression is truthy. If we choose to test for other conditions, an 'else-if' 
+ * keyword will be chained after the second curly brace of the initial 'if'
+ * condition with it's own condition in paranthesis followed by a block of code
+ * to be ran if it's condition evaluates to truthy. We may also choose to have
+ * a default block of code to be ran if all other if and else-if conditions are
+ * not met, this is possible because of the else keyword. At the very end, we can
+ * chain an else keyword w/ NO CONDITION to be tested, only a block of code to be ran
+ * when all other conditions evaluate to falsey.
+ */
+
+
 
 
 // Switch Statements //

@@ -36,3 +36,10 @@ console.log(school.toUpperCase()); //Converts school into all uppercase letters.
 console.log(city.toLowerCase()); //Converts city into all lowercase letters. Logs new orleans
 
 console.log(whiteSpace.trim()); //Removes all the white space from both sides of the string.
+
+console.log(school.length); //Logs 15 because that is the 'length' of the string assigned to shcool.
+
+console.log(school.split(' ')); //Will log an array w/ it's elements as every seperate word in school. [Operation, Spark]
+
+console.log(school.replace('Spark', 'Scooby Doo')); //Will replace the first instance of 'Spark' with
+//'Scooby Doo' and log 'Operation Scooby Doo' to the console.

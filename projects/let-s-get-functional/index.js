@@ -22,53 +22,109 @@ var _ = require("lodown-teamertibebu");
  */
 
 var maleCount = function(array) {
+    //Since this function is meant to return a number, create a count variable
+    //to hold that numerical value.
+    var count = 0;
+    //Use filter to increase <count> by a value of 1 at every instance of a
+    //male customer.
+    _.filter(array, customerObjs => {
+        //If the customer is male...
+        if(customerObjs.gender === 'male') {
+            //Increase count by 1.
+            return count++;
+        }
+        
+    });
+    //Return the final count.
+    return count;
 
 };
 
-var femaleCount;
+var femaleCount = function(array) {
+    
+    //Since this function is meant to return a number, create a count variable
+    //to hold the numerical value.
+    var count = 0;
+    
+    //Use reduce to increase <count> by 1 at every instance of a female customer.
+    _.reduce(array, (a, b) => {
+        //If the current customer is a female, increase <count> by 1.
+        if(b.gender === 'female') {
+            count++
+        };
+        //After every iteration, whether or not gender is female, reassign <a>
+        //to <b>. This will allow us to iterate through all the customers.
+        a = b;
+        
+    }, '')
+    
+    //Return the final <count>
+    return count;
+    
+}
 
 var oldestCustomer = function(array) {
-    //Create oldest variable.
-    let oldest = 0;
-    let name = '';
-    _.filter(array, function(customerObj) {
-        
-        //Loop through list of customer objects
-        if(customerObj.age > oldest) {
-            oldest = customerObj.age
-            name = customerObj.name
+    //Find oldest customer's name
+    //Create variable to house the current eldest customer. This variable will
+    //constantly be updated with the eldest customer as filter does it's work.
+    var oldestCustomer = 0;
+    //Create a variable to house the oldest customer's name.
+    var oldestCustomersName;
+    //Use filter to find customer with highest age
+    _.filter(array, customerObjs => {
+        if(customerObjs.age > oldestCustomer) {
+            //If the current iterations customer's age is greater than the last,
+            //reassign <oldestCustomer> to the current customer's age.
+            oldestCustomer = customerObjs.age;
+            //Then reassign <oldestCustomersName> to the current customer's name.
+            oldestCustomersName = customerObjs.name;
         }
-           
-    })
- return name;   
+    });
+    
+    //Return the oldest customer's name.
+     return oldestCustomersName;
+    
 }
 
 var youngestCustomer = function(array) {
-    // input: array
-    // output: string
-    //Create youngest variable.
-    let youngest = array[0].age;
-    let name = '';
-        //Loop through list of customer objects   
-        _.filter(array, function(customerObj) {
-            if(customerObj.age < youngest) {
-                youngest = customerObj.age;
-                name = customerObj.name;
+    //Find the youngest customer's name.
+    //Create a variable to hold the age of the current youngest customer.
+    var youngestCustomer = array[0].age;
+    //Create a variable to hold the name of the current youngest customer.
+    var youngestCustomersName;
+    //Use filter to filter through <array>
+    _.filter(array, customerObjs => {
+        if(customerObjs.age < youngestCustomer) {
+            //If the current customer's age is less than <youngestCustomer>, 
+            //reassing <youngestCustomer> to the current customer's age.
+            youngestCustomer = customerObjs.age;
+            //Also reassign <youngestCustomersName> to the current youngest
+            //customer's name.
+            youngestCustomersName = customerObjs.name;
         }
-            //Compare current age to highest age
     });
- return name;   
-};
+    
+    //Return <youngestCustomersName>
+    return youngestCustomersName;
+
+}
 
 var averageBalance = function(array) {
-    // call reduce function to loop through each objet in array
-    let sum2 = _.reduce(array, function sum(acc, currentVal, seed) {
-        let currency = currentVal.balance;
-        let currency2 = currency.slice(1);
-        let currency3 = parseFloat(currency2.replace(/,/g, ''));
-        return acc + currency3;
-    }, 0);
-    return sum2 / array.length;
+ 
+    //Create a variable to hold the sum of all customer balanaces
+    //Use reduce to sum all customer balances and assign the total to <totalBalance>
+    var totalBalance = _.reduce(array, (a, b) => {
+            //Turn balance amount from a string to a number.
+            var number = Number(b.balance.replace(/[^0-9\.-]+/g,""));
+            //Return the sum of all values.
+            return a + number;
+    }, 0 /*Set seed to 0*/);
+    
+    //Create variable to hold the average of <totalBalance>
+    var averageBalance = totalBalance/array.length;
+    
+     return averageBalance;
+ 
 };
 
 var firstLetterCount = function(array, letter) {
@@ -100,11 +156,103 @@ var friendFirstLetterCount = function(array, customer, letter) {
     return count;
 };
 
-var friendsCount;
+var friendsCount = function(array, name) {
+    //Find the customers' name that have <name> in their friends list.
+    //Creat an array to hold all customers that have <name> in their friends list.
+    var friendsOfName = [];
+    //Use filter to iterate through all the friends lists of each customer to search
+    //for the existence of <name>.
+    _.filter(array, customerObjs => {
+        //Use for loop to iterate through every <customerObjs> <friends> array.
+        for(let i = 0; i < customerObjs.friends.length; i++) {
+            if(customerObjs.friends[i].name === name) {
+                friendsOfName.push(customerObjs.name)
+            }
+        }
+    });
 
-var topThreeTags;
+    return friendsOfName;
+    
+}
 
-var genderCount;
+var topThreeTags = function(array) {
+
+    //Find the three most common tags among all customers' associated tags.
+    //Join all tag arrays into one array using reduce.
+    let allTags = _.reduce(array, (acc, val) => {
+         let allTags;
+        //Reassign <allTags> to the concatenation of all customer <tags>
+        allTags = acc.concat(val['tags'])
+        return allTags;
+    }, [])
+    //Use the unique function to create another array w/ all unique tags, no duplicates.
+    let uniqueTags = _.unique(allTags);
+    //Use a nested for loop to compare both arrays and create a new array of subarrays
+    //each containing a tag and its count.
+    let tagsAndCounts = [];
+    
+    for(let i = 0; i < uniqueTags.length; i++) {
+        //Create a count variable within the first for loop that holds the count
+        //of the current tag but gets reset to zero after the the second for loop
+        //complets and pushes the count to <tagsAndcounts>.
+        let count = 0;
+        for(let j = 0; j < allTags.length; j++) {
+            //Use a conditional to increase count for every instance of a tag in
+            //<allTags>.
+            if(uniqueTags[i] === allTags[j]) {
+                count++
+            }
+        }
+        //Push a subarray of the tag and its count into <tagsAndCount>.
+        tagsAndCounts.push([uniqueTags[i], count])
+    }
+    //Sort <tagsAndCounts>.
+    tagsAndCounts.sort(function(a,b){return a[1] - b[1]});
+    //Slice off the last three elements and assign them to a new array.
+    let topThreeTagsWithCount = tagsAndCounts.slice((tagsAndCounts.length - 3));
+    //Creat a final array to house only the top three tags w/only their name, not count. 
+    let topThreeTags = [];
+    //Use a for loop to iterate through <topThreeTagsWithCount> and push only
+    //the tags into <topThreeTags>, w/o their corresponding counts.
+    for(let i = 0; i < topThreeTagsWithCount.length; i++) {
+        topThreeTags.push(topThreeTagsWithCount[i][0])
+    }
+    //Finally, return <topThreeTags>
+    return topThreeTags;
+     
+    
+}
+
+var genderCount = function(array) {
+    //Create a summary of genders. Three properties of male: <number>, female: <number>, non-binary: <number>;
+    //Create three variables: maleCount, femaleCount, nonBinaryCount to house their corresponding counts.
+    var maleCount = 0;
+    var femaleCount = 0;
+    var nonBinaryCount = 0;
+    //Use a for loop to iterate through <array> and, at every instance of a male, female, or non-binary,
+    //add 1 to the corresponding count variable.
+    _.filter(array, customerObjs => {
+        if(customerObjs.gender === 'male') {
+            maleCount++;
+        } else if(customerObjs.gender === 'female') {
+            femaleCount++;
+        } else if(customerObjs.gender === 'non-binary') {
+            nonBinaryCount++;
+        }
+    });
+    
+    //Create an object, in proper form, with individual properties for each gender, with their corresponding
+    //counts as values.
+    var genderCount = {
+        male: maleCount,
+        female: femaleCount,
+        "non-binary": nonBinaryCount
+    };
+    
+    return genderCount;
+    
+    
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

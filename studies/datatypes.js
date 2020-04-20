@@ -19,7 +19,10 @@
 
 /*
 * Numbers are numeric data w/o single/double quotes. Numbers are the largest primitive
-* datatype at 8 bytes, which is the space alloted to variables.
+* datatype at 8 bytes, which is the space alloted to variables. Numbers, in Javascript,
+* can be integers, negative, and/or contain decimals. Extra large/Extra small numbers
+* can be written using exponent notation.
+*
 */
 
 let num = 9; 
@@ -175,3 +178,37 @@ greeting(); //Function call: calls the function to perform the specified procedu
 
 console.log(1.797693134862316E+309); //Logs Infinity to the console.
 console.log(-1.797693134862316E+309); //Logs -Infinity to the console.
+
+
+/*COPY BY VALUE EXAMPLE:
+        
+    var x = 10;
+    var y = 'abc';
+    var a = x;
+    var b = y;
+    
+    console.log(x, y, a, b); // -> 10, 'abc', 10, 'abc'
+    
+    Both a and x now contain 10. Both b and y now contain 'abc'. 
+    They’re separate, as the values themselves were copied. Changing one
+    will not change the other.
+*/
+/*COPY BY REFERENCE EXAMPLE:
+
+    var arrRef = ['Hi!''];
+    var arrRef2 = arrRef;
+    
+    console.log(arrRef === arrRef2); // -> true
+    This will coerce to true because both variables hold a reference to the same value.
+    
+    
+    var arr1 = ['Hi!'];
+    var arr2 = ['Hi!'];
+    
+    console.log(arr1 === arr2); // -> false
+    This will coerce to false becuase, although both variables hold identical 
+    properties, these values are housed at different 'adresses' in the computer.
+    Both variables hold a reference to different values.
+
+
+*/

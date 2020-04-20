@@ -10,8 +10,8 @@ An exercise in problem solving in the functional idiom.
 ## Step 1 - Setup
  - Run `os install` to install `Lets Get Functional`
  - Copy the name of your `lodown`package. It should be something like `lodown-oliviasaborush`
- - In your bash terminal run the command `npm install --global lodown-oliviasaborush` with **your** lodown package
- - In your bash terminal run the command `npm link lodown-oliviasaborush` with **your** lodown package
+ - In your bash terminal run the command `npm install --global lodown-teamertibebu` with **your** lodown package
+ - In your bash terminal run the command `npm link lodown-teamertibebu` with **your** lodown package
     - These commands will not work unless you use **your** lodown name 
  - Open `index.js`
  - Update line 6 of `index.js` to reference your `lodown` library
@@ -25,7 +25,7 @@ const _ = require('lodown-oliviasaborush');
  - Implement the functions outlined below, using your `lodown` library
  - Code and test your solutions in `index.js`
  - Data is available to you in an Array stored in the variable `customers`
- - To test your solutions run `npm start --prefix ./<YOUR_GITHUB_FOLDER/projects/let-s-get-functional` in your terminal  
+ - To test your solutions run `npm start --prefix ./teamertibebu.github.io/projects/let-s-get-functional` in your terminal  
  
  _IMPORTANT_: Make sure you replace `<YOUR_GITHUB_FOLDER` with your actual github folder in your workspace.
 
