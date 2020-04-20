@@ -111,7 +111,7 @@ console.log(age); //Logs a reference error because age only exists within the lo
 
 //Variables declared with let are not hoisted.
 
-console.log(myAge) //Logs a reference error becuase, unlike var, let is not hoisted.
+//console.log(myAge); //Logs a reference error becuase, unlike var, let is not hoisted.
 
 let myAge = 29;
 
@@ -136,13 +136,13 @@ let myAge = 29;
 
 const firstName = 'Teamer'; 
 
-function name() {
+function names() {
     console.log(firstName); //Logs Teamer because nameFirst is globally accessible.
     const age = 29; //This declaration only exists only within the local scope of this function.
     console.log(age); //Logs 29 within the local scope of the function.
 }
 
-name();
+names();
 console.log(age); //Logs a reference error because age only exists within the local scope of the function.
 
 
@@ -150,12 +150,12 @@ console.log(age); //Logs a reference error because age only exists within the lo
 
 //Variables declared with const are not hoisted.
 
-console.log(eyeColor) //Logs a reference error becuase, unlike var, const is not hoisted.
+//console.log(eyeColor); //Logs a reference error becuase, unlike var, const is not hoisted.
 
 const eyeColor = 'red';
 
 
 // Reassignment/Redeclaration //
 const greeting2 = 'Hello';
-greeting2 = 'Bye'; //Logs a type error because constants cannot be reassigned.
+//greeting2 = 'Bye'; //Logs a type error because constants cannot be reassigned.
 

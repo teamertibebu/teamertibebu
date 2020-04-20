@@ -81,7 +81,7 @@ function func() {
 
 func();
 console.log(count); //Will log 1 to the console.
-console.log(number); //Will log a reference error because number is only accessible within <func>. It
+//console.log(number); //Will log a reference error because number is only accessible within <func>. It
 //does not exist in the global scope.
 
 
