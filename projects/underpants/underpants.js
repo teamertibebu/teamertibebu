@@ -642,6 +642,14 @@ _.reduce = function(array, func, seed) {
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
+_.extend = function (obj1, obj2, ...objects) {//Takes multiple objects as inputs.
+        //Create a variable that is set to the value of assigning all
+        //target objects' properties to the source object.
+        var returnedTarget = Object.assign(obj1, obj2, ...objects);
+       //Return
+        return returnedTarget
+    }
+
 
 
 
