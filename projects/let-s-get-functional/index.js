@@ -210,13 +210,9 @@ var topThreeTags = function(array) {
     tagsAndCounts.sort(function(a,b){return a[1] - b[1]});
     //Slice off the last three elements and assign them to a new array.
     let topThreeTagsWithCount = tagsAndCounts.slice((tagsAndCounts.length - 3));
-    //Creat a final array to house only the top three tags w/only their name, not count. 
-    let topThreeTags = [];
-    //Use a for loop to iterate through <topThreeTagsWithCount> and push only
-    //the tags into <topThreeTags>, w/o their corresponding counts.
-    for(let i = 0; i < topThreeTagsWithCount.length; i++) {
-        topThreeTags.push(topThreeTagsWithCount[i][0])
-    }
+    //Using _.map(), create a final array to house only the top three tags w/only their name, not count. 
+    let topThreeTags = _.map(topThreeTagsWithCount, tags => tags[0]);
+  
     //Finally, return <topThreeTags>
     return topThreeTags;
      
